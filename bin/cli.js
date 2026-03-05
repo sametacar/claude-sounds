@@ -1,0 +1,99 @@
+#!/usr/bin/env node
+import { list, get } from '../src/themes/index.js';
+import * as claudeCode from '../src/adapters/claude-code.js';
+import { playEvent } from '../src/player.js';
+import { showMenu } from '../src/menu.js';
+
+const [,, command, ...args] = process.argv;
+
+function help() {
+  console.log(`
+claude-sounds — Retro game sounds for Claude Code
+
+Usage:
+  claude-sounds               Interactive theme menu
+  claude-sounds list          List available themes
+  claude-sounds use <theme>   Apply a theme
+  claude-sounds off           Disable sounds
+  claude-sounds current       Show active theme
+  claude-sounds hook <event>  Play sound for event (called by hooks)
+`);
+}
+
+switch (command) {
+  case 'list': {
+    const themes = list();
+    console.log('\nAvailable themes:\n');
+    for (const { id, name, full } of themes) {
+      const suffix = full ? ' \x1b[2m[full]\x1b[0m' : '';
+      console.log(`  ${id.padEnd(12)} ${name}${suffix}`);
+    }
+    console.log();
+    break;
+  }
+
+  case 'use': {
+    const id = args[0];
+    if (!id) {
+      console.error('Usage: claude-sounds use <theme>');
+      process.exit(1);
+    }
+    try {
+      const theme = get(id);
+      claudeCode.ensureGlobalInstall();
+      claudeCode.apply(theme);
+      const fullNote = theme.full ? ' (full)' : '';
+      console.log(`\x1b[1;32m✓ Applied "${theme.name}"${fullNote}\x1b[0m`);
+    } catch (err) {
+      console.error(err.message);
+      process.exit(1);
+    }
+    break;
+  }
+
+  case 'off': {
+    claudeCode.off();
+    console.log('\x1b[1;33m✓ Sounds disabled\x1b[0m');
+    break;
+  }
+
+  case 'current': {
+    const id = claudeCode.current();
+    if (!id) {
+      console.log('No theme active (sounds off)');
+    } else {
+      try {
+        const theme = get(id);
+        const fullNote = theme.full ? ' (full)' : '';
+        console.log(`Active theme: ${theme.name}${fullNote} [${id}]`);
+      } catch {
+        console.log(`Active theme: ${id}`);
+      }
+    }
+    break;
+  }
+
+  case 'hook': {
+    const event = args[0];
+    if (!event) process.exit(0);
+    const id = claudeCode.current();
+    if (!id) process.exit(0);
+    try {
+      const theme = get(id);
+      playEvent(theme, event);
+    } catch {
+      // silently ignore — hooks must not break Claude Code
+    }
+    break;
+  }
+
+  case undefined: {
+    showMenu();
+    break;
+  }
+
+  default: {
+    help();
+    break;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "claude-sounds",
+  "version": "0.0.1",
+  "description": "Retro game sounds for Claude Code hooks",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "claude-sounds": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "sounds"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-hooks",
+    "sounds",
+    "hooks",
+    "retro",
+    "age-of-empires",
+    "starcraft",
+    "warcraft",
+    "mortal-kombat",
+    "anthropic"
+  ],
+  "author": "Samet Acar <sametacarsamet@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
