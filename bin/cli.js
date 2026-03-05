@@ -8,15 +8,15 @@ const [,, command, ...args] = process.argv;
 
 function help() {
   console.log(`
-claude-sounds — Retro game sounds for Claude Code
+claudefx — Retro game sounds for Claude Code
 
 Usage:
-  claude-sounds               Interactive theme menu
-  claude-sounds list          List available themes
-  claude-sounds use <theme>   Apply a theme
-  claude-sounds off           Disable sounds
-  claude-sounds current       Show active theme
-  claude-sounds hook <event>  Play sound for event (called by hooks)
+  claudefx               Interactive theme menu
+  claudefx list          List available themes
+  claudefx use <theme>   Apply a theme
+  claudefx off           Disable sounds
+  claudefx current       Show active theme
+  claudefx hook <event>  Play sound for event (called by hooks)
 `);
 }
 
@@ -35,7 +35,7 @@ switch (command) {
   case 'use': {
     const id = args[0];
     if (!id) {
-      console.error('Usage: claude-sounds use <theme>');
+      console.error('Usage: claudefx use <theme>');
       process.exit(1);
     }
     try {

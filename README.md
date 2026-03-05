@@ -1,9 +1,9 @@
-# claude-sounds
+# claudefx 🎮
 
-[![npm version](https://img.shields.io/npm/v/claude-sounds.svg)](https://www.npmjs.com/package/claude-sounds)
+[![npm version](https://img.shields.io/npm/v/claudefx.svg)](https://www.npmjs.com/package/claudefx)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Retro game sounds for [Claude Code](https://claude.ai/code) hooks. Plays nostalgic sound effects from **Starcraft**, **Warcraft**, **Mortal Kombat**, and **Age of Empires 2** when Claude finishes a response, starts a session, sends a notification, and more.
+Retro game sounds and themed spinner verbs for [Claude Code](https://claude.ai/code). Plays nostalgic sound effects from **StarCraft**, **Warcraft**, **Mortal Kombat**, and **Age of Empires 2** when Claude finishes a response, starts a session, sends a notification, and more. Also replaces Claude's thinking spinner with game-themed phrases.
 
 Works on **macOS**, **Windows**, and **Linux**.
 
@@ -12,7 +12,7 @@ Works on **macOS**, **Windows**, and **Linux**.
 ## Installation
 
 ```bash
-npx claude-sounds
+npx claudefx
 ```
 
 That's it. Pick a theme from the menu — if needed, it installs itself globally so hooks keep working.
@@ -30,37 +30,37 @@ That's it. Pick a theme from the menu — if needed, it installs itself globally
 | `ao2-turks` | 🏰 Age of Empires 2: Turks |
 
 
+## Themed Spinner Verbs
+
+Each theme also replaces Claude Code's spinner verbs with game-themed phrases. While Claude is thinking, you'll see lines like *"Spawning zerglings"* or *"Summoning ogres"* instead of the defaults.
+
+<img src="assets/image-retro-sounds-spinning-verbs.webp" width="439" alt="Themed spinner verbs preview">
+
 ## Usage
 
 ### Interactive menu
 
 ```bash
-claude-sounds
+claudefx
 ```
 
 Use `↑↓` to navigate, `Enter` to select, `q` to quit.
 
-<img src="assets/image-claude-sounds-menu.webp" width="439" alt="Interactive menu">
+<img src="assets/image-claudefx-menu.webp" width="439" alt="Interactive menu">
 
 ### CLI commands
 
 ```bash
-claude-sounds list              # list all themes
-claude-sounds use <theme>       # apply a theme
-claude-sounds use ao2-turks     # example
-claude-sounds off               # disable sounds
-claude-sounds current           # show active theme
+claudefx list              # list all themes
+claudefx use <theme>       # apply a theme
+claudefx use ao2-turks     # example
+claudefx off               # disable sounds
+claudefx current           # show active theme
 ```
-
-## Themed Spinner Verbs
-
-Each theme also replaces Claude Code's spinner verbs with game-themed phrases. While Claude is thinking, you'll see lines like *"Spawning zerglings"* or *"Summoning ogres"* instead of the defaults.
-
-<img src="assets/image-retro-sounds-spinning-verbs.webp" width="439" alt="Themed spinner verbs preview"> 
 
 ## How It Works
 
-`claude-sounds use <theme>` writes hooks and spinner verbs to `~/.claude/settings.json`. Claude Code triggers sounds on these events:
+`claudefx use <theme>` writes hooks and spinner verbs to `~/.claude/settings.json`. Claude Code triggers sounds on these events:
 
 | Event | When |
 |-------|------|
@@ -77,3 +77,13 @@ Each theme also replaces Claude Code's spinner verbs with game-themed phrases. W
 - **macOS**: built-in `afplay` (no extra deps)
 - **Windows**: built-in PowerShell (no extra deps)
 - **Linux**: `mpg123` (`sudo apt install mpg123`)
+
+## License
+
+MIT © [Samet Acar](https://github.com/sametacar)
+
+## Disclaimer
+
+This is an unofficial fan project, free for personal and non-commercial use. It is not affiliated with, endorsed by, or sponsored by Blizzard Entertainment, Midway Games, Microsoft, or any other game publisher or rights holder. All sound clips remain the property of their respective owners. All trademarks and registered trademarks are the property of their respective owners.
+
+If you are a rights holder and would like any content removed, please [open an issue](https://github.com/sametacar/claudefx/issues) and it will be taken down promptly.

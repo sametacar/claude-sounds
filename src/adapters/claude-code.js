@@ -68,21 +68,21 @@ function resetVscode() {
 
 function isGloballyInstalled() {
   const cmd = process.platform === 'win32' ? 'where' : 'which';
-  const result = spawnSync(cmd, ['claude-sounds'], { stdio: 'ignore' });
+  const result = spawnSync(cmd, ['claudefx'], { stdio: 'ignore' });
   return result.status === 0;
 }
 
 export function ensureGlobalInstall() {
   if (isGloballyInstalled()) return;
-  console.log('\x1b[2mInstalling claude-sounds globally for hooks...\x1b[0m');
-  const result = spawnSync('npm', ['install', '-g', 'claude-sounds'], { stdio: 'inherit' });
+  console.log('\x1b[2mInstalling claudefx globally for hooks...\x1b[0m');
+  const result = spawnSync('npm', ['install', '-g', 'claudefx'], { stdio: 'inherit' });
   if (result.status !== 0) {
-    throw new Error('Global install failed. Run manually: npm install -g claude-sounds');
+    throw new Error('Global install failed. Run manually: npm install -g claudefx');
   }
 }
 
 function isSoundHook(h) {
-  return h?.hooks?.some(hh => hh.command?.includes('claude-sounds hook'));
+  return h?.hooks?.some(hh => hh.command?.includes('claudefx hook'));
 }
 
 export function apply(theme) {
@@ -91,13 +91,13 @@ export function apply(theme) {
 
   for (const [event, arg] of Object.entries(EVENT_MAP)) {
     const cleaned = (hooks[event] ?? []).filter(h => !isSoundHook(h));
-    cleaned.push({ hooks: [{ type: 'command', command: `claude-sounds hook ${arg}` }] });
+    cleaned.push({ hooks: [{ type: 'command', command: `claudefx hook ${arg}` }] });
     hooks[event] = cleaned;
   }
 
   settings.hooks = hooks;
   settings.spinnerVerbs = { mode: 'replace', verbs: theme.verbs };
-  settings['claude-sounds'] = { theme: theme.id };
+  settings['claudefx'] = { theme: theme.id };
   writeSettings(settings);
   applyVscode(theme.verbs);
 }
@@ -122,12 +122,12 @@ export function off() {
   }
 
   delete settings.spinnerVerbs;
-  delete settings['claude-sounds'];
+  delete settings['claudefx'];
   writeSettings(settings);
   resetVscode();
 }
 
 export function current() {
   const settings = readSettings();
-  return settings['claude-sounds']?.theme ?? null;
+  return settings['claudefx']?.theme ?? null;
 }

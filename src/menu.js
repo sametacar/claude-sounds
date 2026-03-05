@@ -22,7 +22,7 @@ function write(s) {
 
 export function showMenu() {
   if (!process.stdin.isTTY) {
-    console.error('No TTY available. Use: claude-sounds use <theme>');
+    console.error('No TTY available. Use: claudefx use <theme>');
     process.exit(1);
   }
 
@@ -42,7 +42,7 @@ export function showMenu() {
   const draw = () => {
     write('\x1b[H\x1b[2J\x1b[H');
 
-    write('\x1b[1;36mclaude-sounds\x1b[0m\n');
+    write('\x1b[1;36mclaudefx\x1b[0m\n');
     write('\x1b[2m────────────────────────────────────────\x1b[0m\n');
     write('\n');
     write('  \x1b[2m↑↓\x1b[0m navigate   \x1b[2mEnter\x1b[0m select   \x1b[2mq\x1b[0m quit\n');
