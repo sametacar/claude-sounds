@@ -91,7 +91,7 @@ export function apply(theme) {
 
   for (const [event, arg] of Object.entries(EVENT_MAP)) {
     const cleaned = (hooks[event] ?? []).filter(h => !isSoundHook(h));
-    cleaned.push({ hooks: [{ type: 'command', command: `claudefx hook ${arg}` }] });
+    cleaned.push({ hooks: [{ type: 'command', command: `npx claudefx hook ${arg}` }] });
     hooks[event] = cleaned;
   }
 

@@ -15,7 +15,7 @@ Works on **macOS**, **Windows**, and **Linux**.
 npx claudefx
 ```
 
-That's it. Pick a theme from the menu — if needed, it installs itself globally so hooks keep working.
+That's it. Pick a theme from the menu — hooks are set up automatically using `npx`, no global install needed.
 
 ## Available Themes
 
@@ -41,7 +41,7 @@ Each theme also replaces Claude Code's spinner verbs with game-themed phrases. W
 ### Interactive menu
 
 ```bash
-claudefx
+npx claudefx
 ```
 
 Use `↑↓` to navigate, `Enter` to select, `q` to quit.
@@ -51,11 +51,11 @@ Use `↑↓` to navigate, `Enter` to select, `q` to quit.
 ### CLI commands
 
 ```bash
-claudefx list              # list all themes
-claudefx use <theme>       # apply a theme
-claudefx use ao2-turks     # example
-claudefx off               # disable sounds
-claudefx current           # show active theme
+npx claudefx list              # list all themes
+npx claudefx use <theme>       # apply a theme
+npx claudefx use ao2-turks     # example
+npx claudefx off               # disable sounds
+npx claudefx current           # show active theme
 ```
 
 ## How It Works
