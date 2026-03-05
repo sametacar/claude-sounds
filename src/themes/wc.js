@@ -26,3 +26,5 @@ const base = {
     "❓ We're ready, master... I'm not ready!"
   ],
 };
+
+export const wc = base;

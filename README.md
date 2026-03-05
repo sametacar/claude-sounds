@@ -21,7 +21,6 @@ That's it. Pick a theme from the menu — if needed, it installs itself globally
 
 | Theme | Game |
 |-------|------|
-| `sc` | 🚀 StarCraft |
 | `sc-terran` | 🚀 StarCraft: Terran |
 | `sc-protoss` | 🚀 StarCraft: Protoss |
 | `wc` | 🪓 Warcraft |

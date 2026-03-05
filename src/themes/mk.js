@@ -61,3 +61,5 @@ const base = {
     "😤 Getting called pathetic by Shao Kahn"
   ],
 };
+
+export const mk = base;
