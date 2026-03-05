@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/claude-sounds.svg)](https://www.npmjs.com/package/claude-sounds)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Retro game sounds for [Claude Code](https://claude.ai/code) hooks. Plays nostalgic sound effects when Claude finishes a response, starts a session, sends a notification, and more.
+Retro game sounds for [Claude Code](https://claude.ai/code) hooks. Plays nostalgic sound effects from **Starcraft**, **Warcraft**, **Mortal Kombat**, and **Age of Empires 2** when Claude finishes a response, starts a session, sends a notification, and more.
 
 Works on **macOS**, **Windows**, and **Linux**.
 
@@ -40,6 +40,8 @@ claude-sounds
 
 Use `↑↓` to navigate, `Enter` to select, `q` to quit.
 
+<img src="assets/image-claude-sounds-menu.webp" width="439" alt="Interactive menu">
+
 ### CLI commands
 
 ```bash
@@ -53,6 +55,8 @@ claude-sounds current           # show active theme
 ## Themed Spinner Verbs
 
 Each theme also replaces Claude Code's spinner verbs with game-themed phrases. While Claude is thinking, you'll see lines like *"Spawning zerglings"* or *"Summoning ogres"* instead of the defaults.
+
+<img src="assets/image-retro-sounds-spinning-verbs.webp" width="439" alt="Themed spinner verbs preview"> 
 
 ## How It Works
 
