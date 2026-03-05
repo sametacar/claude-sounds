@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn, spawnSync } from 'child_process';
 import { existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -19,12 +19,19 @@ function playFile(filePath) {
     cmd = 'afplay';
     args = [filePath];
   } else if (process.platform === 'win32') {
-    const uri = 'file:///' + filePath.replace(/\\/g, '/');
-    cmd = 'powershell';
-    args = [
-      '-NonInteractive', '-NoProfile', '-WindowStyle', 'Hidden', '-c',
-      `Add-Type -AssemblyName PresentationCore; $mp=[System.Windows.Media.MediaPlayer]::new(); $mp.Open([uri]'${uri}'); $mp.Play(); Start-Sleep 10`,
-    ];
+    const escaped = filePath.replace(/\\/g, '/');
+    const ps = [
+      'Add-Type -TypeDefinition \'using System; using System.Text; using System.Runtime.InteropServices; public class MCI { [DllImport("winmm.dll", CharSet=CharSet.Auto)] public static extern int mciSendString(string cmd, StringBuilder ret, int cch, IntPtr hwnd); }\'',
+      `[MCI]::mciSendString('open "${escaped}" type mpegvideo alias media', $null, 0, [IntPtr]::Zero)`,
+      '[MCI]::mciSendString(\'play media wait\', $null, 0, [IntPtr]::Zero)',
+      '[MCI]::mciSendString(\'close media\', $null, 0, [IntPtr]::Zero)',
+    ].join('; ');
+    try {
+      spawnSync('powershell', ['-NonInteractive', '-NoProfile', '-WindowStyle', 'Hidden', '-c', ps], { stdio: 'ignore' });
+    } catch {
+      // silently fail
+    }
+    return;
   } else {
     cmd = 'mpg123';
     args = ['-q', filePath];
